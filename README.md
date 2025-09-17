@@ -1,66 +1,85 @@
-# AI & Python Mini Projects
+# Project Portfolio Overview  
 
-This repository contains three beginner-friendly projects built using **Python** and popular libraries/frameworks.  
-Each project demonstrates the application of Python in **AI, NLP, and Web Development**.
+This repository contains three data science and machine learning projects that demonstrate skills in Exploratory Data Analysis (EDA), Machine Learning (Neural Networks), and Natural Language Processing (NLP) with Flask.  
 
----
-
-## Project 1: Image Resizer Tool
-### Overview
-A Python script that resizes and converts images in bulk using the **Pillow (PIL)** library.  
-It supports resizing to custom dimensions and converting between image formats.
-
-### Technologies
-- Python  
-- Pillow (PIL)
-
-### Features
-- Batch image resizing  
-- Format conversion (JPEG, PNG, etc.)  
-- Simple and efficient script  
+Each project is self-contained, showcasing different aspects of Python, data handling, and AI applications.  
 
 ---
 
-## Project 2: Rule-Based Chatbot
-### Overview
-A simple chatbot built using **if-elif-else statements** in Python.  
-It simulates conversation with predefined responses.
+## Project 1: Basic Data Analysis on Iris Dataset  
 
-### Technologies
-- Python
+### Overview  
+Explored the Iris dataset to demonstrate basic data analysis and visualization techniques.  
+Performed EDA, descriptive statistics, and visualizations to uncover insights.  
 
-### Features
-- Interactive chatbot in terminal  
-- Handles basic user queries  
-- Demonstrates logic building with conditions  
+### Key Highlights  
+- Explored dataset structure, missing values, and statistics  
+- Grouped by species for average feature values  
+- Visualized results using bar charts, scatter plots, and heatmaps  
+- Found strong correlation between petal length and petal width  
 
----
-
-## Project 3: Sentiment Analysis Web Application
-### Overview
-A **Flask web application** that performs **sentiment analysis** on user-entered text using the **TextBlob** library.  
-
-### Technologies
-- Python  
-- Flask (Web Framework)  
-- TextBlob (NLP)  
-- HTML + CSS (Frontend)
-
-### Features
-- Classifies text as **Positive / Negative / Neutral**  
-- Displays **Polarity Score** (-1 → +1)  
-- Displays **Subjectivity Score** (0 → 1)  
-- Simple, user-friendly interface  
+### Tech Stack  
+- Python, Pandas, Matplotlib, Seaborn  
 
 ---
 
-## Conclusion
-These projects showcase the power of **Python** in different domains:  
-- **Image Processing** (Image Resizer)  
-- **Conversation Simulation** (Chatbot)  
-- **Natural Language Processing** (Sentiment Analysis)  
+## Project 2: House Price Prediction using Neural Networks  
 
-Each project is beginner-friendly and can be extended into more advanced applications.
+### Overview  
+Built and compared two regression models using TensorFlow/Keras to predict house prices.  
+The goal was to test whether activation functions improve performance.  
+
+### Key Highlights  
+- Preprocessed housing dataset (scaling, train-test split)  
+- Developed two models:  
+  - Model 1 → Without activation functions (linear)  
+  - Model 2 → With ReLU activation functions  
+- Compared results using MAE and MSE  
+- Discovered that linear model (Model 1) outperformed ReLU-based model  
+
+### Results  
+| Model   | MAE       | MSE        |  
+|---------|-----------|------------|  
+| Model 1 | ~9,058    | ~1.21e+08  |  
+| Model 2 | ~513,074  | ~3.31e+11  |  
+
+### Tech Stack  
+- Python, TensorFlow/Keras, Scikit-learn, Matplotlib, Seaborn  
 
 ---
-✨ *Happy Coding!*
+
+## Project 3: Sentiment Analysis Web Application  
+
+### Overview  
+Developed a Flask-based web application for real-time sentiment analysis using TextBlob.  
+The app classifies text as Positive, Negative, or Neutral.  
+
+### Key Highlights  
+- User inputs text through a simple web form  
+- App calculates Polarity (-1 to +1) and Subjectivity (0 to 1)  
+- Clean UI with instant feedback  
+- Can be extended with advanced NLP models  
+
+### Tech Stack  
+- Python, Flask, TextBlob, HTML, CSS  
+
+---
+
+## Skills Demonstrated  
+
+- Exploratory Data Analysis (EDA) – statistics, visualizations, insights  
+- Machine Learning – regression models, evaluation metrics, TensorFlow  
+- Deep Learning – neural network architecture design and testing  
+- Natural Language Processing (NLP) – sentiment analysis using TextBlob  
+- Web Development – Flask app development with HTML and CSS  
+
+---
+
+## Conclusion  
+
+These projects collectively showcase:  
+- Ability to analyze and visualize datasets  
+- Practical experience with neural networks and ML models  
+- Hands-on web application development for AI tasks  
+
+This portfolio highlights proficiency in Python, Data Science, Machine Learning, and NLP—covering both backend analysis and frontend deployment.  
