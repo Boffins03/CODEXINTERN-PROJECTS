@@ -1,85 +1,66 @@
-# Project Portfolio Overview  
 
-This repository contains three data science and machine learning projects that demonstrate skills in Exploratory Data Analysis (EDA), Machine Learning (Neural Networks), and Natural Language Processing (NLP) with Flask.  
+# SentimentLab — Real-time Sentiment Analysis (Flask + TextBlob)
 
-Each project is self-contained, showcasing different aspects of Python, data handling, and AI applications.  
+A professional, production-ready starter for sentiment analysis on user-provided text.
+It uses **TextBlob** to compute **Sentiment (Positive/Negative/Neutral)** along with **Polarity** and **Subjectivity** scores.
 
----
+## Features
+- Clean, responsive UI (Bootstrap 5)
+- Real-time analysis (no DB)
+- Input validation (1–5000 chars) & sanitization (bleach)
+- CSRF protection (Flask-WTF)
+- Color-coded results + progress bars
+- Optional gauges (Chart.js)
+- Simple session-based recent history (last 5)
+- REST API: `POST /api/analyze` (JSON: `{ "text": "..." }`)
+- Basic rate limiting with Flask-Limiter
+- Docker & Heroku-friendly (Gunicorn)
 
-## Project 1: Basic Data Analysis on Iris Dataset  
+## Quickstart
 
-### Overview  
-Explored the Iris dataset to demonstrate basic data analysis and visualization techniques.  
-Performed EDA, descriptive statistics, and visualizations to uncover insights.  
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+python -m textblob.download_corpora  # one-time for TextBlob
+export FLASK_APP=app.py  # Windows PowerShell: $Env:FLASK_APP="app.py"
+export FLASK_ENV=development
+flask run
+```
 
-### Key Highlights  
-- Explored dataset structure, missing values, and statistics  
-- Grouped by species for average feature values  
-- Visualized results using bar charts, scatter plots, and heatmaps  
-- Found strong correlation between petal length and petal width  
+Then open http://127.0.0.1:5000/
 
-### Tech Stack  
-- Python, Pandas, Matplotlib, Seaborn  
+### API Example
+```bash
+curl -X POST http://127.0.0.1:5000/api/analyze -H "Content-Type: application/json" -d "{\"text\": \"I love this!\\"}"
+```
 
----
+## Configuration
+- `SECRET_KEY` (env var) for sessions/CSRF.
+- Rate limiting defaults to `60/minute` globally; endpoints have explicit limits too.
 
-## Project 2: House Price Prediction using Neural Networks  
+## Testing
+```bash
+pytest -q
+```
 
-### Overview  
-Built and compared two regression models using TensorFlow/Keras to predict house prices.  
-The goal was to test whether activation functions improve performance.  
+## Deployment
+Use Gunicorn in production:
+```bash
+gunicorn -w 2 -b 0.0.0.0:5000 app:create_app()
+```
 
-### Key Highlights  
-- Preprocessed housing dataset (scaling, train-test split)  
-- Developed two models:  
-  - Model 1 → Without activation functions (linear)  
-  - Model 2 → With ReLU activation functions  
-- Compared results using MAE and MSE  
-- Discovered that linear model (Model 1) outperformed ReLU-based model  
+### Docker (optional)
+```dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+COPY . .
+RUN pip install --no-cache-dir -r requirements.txt && python -m textblob.download_corpora
+ENV PORT=5000
+CMD ["gunicorn", "-w", "2", "-b", "0.0.0.0:5000", "app:create_app()"]
+```
 
-### Results  
-| Model   | MAE       | MSE        |  
-|---------|-----------|------------|  
-| Model 1 | ~9,058    | ~1.21e+08  |  
-| Model 2 | ~513,074  | ~3.31e+11  |  
-
-### Tech Stack  
-- Python, TensorFlow/Keras, Scikit-learn, Matplotlib, Seaborn  
-
----
-
-## Project 3: Sentiment Analysis Web Application  
-
-### Overview  
-Developed a Flask-based web application for real-time sentiment analysis using TextBlob.  
-The app classifies text as Positive, Negative, or Neutral.  
-
-### Key Highlights  
-- User inputs text through a simple web form  
-- App calculates Polarity (-1 to +1) and Subjectivity (0 to 1)  
-- Clean UI with instant feedback  
-- Can be extended with advanced NLP models  
-
-### Tech Stack  
-- Python, Flask, TextBlob, HTML, CSS  
-
----
-
-## Skills Demonstrated  
-
-- Exploratory Data Analysis (EDA) – statistics, visualizations, insights  
-- Machine Learning – regression models, evaluation metrics, TensorFlow  
-- Deep Learning – neural network architecture design and testing  
-- Natural Language Processing (NLP) – sentiment analysis using TextBlob  
-- Web Development – Flask app development with HTML and CSS  
-
----
-
-## Conclusion  
-
-These projects collectively showcase:  
-- Ability to analyze and visualize datasets  
-- Practical experience with neural networks and ML models  
-- Hands-on web application development for AI tasks  
-
-This portfolio highlights proficiency in Python, Data Science, Machine Learning, and NLP—covering both backend analysis and frontend deployment.  
+## Notes
+- **Polarity thresholds**: > 0.05 positive, < -0.05 negative, else neutral.
+- No database is used. For history persistence, add a DB or cache.
+- Avoid exposing `SECRET_KEY` publicly.
